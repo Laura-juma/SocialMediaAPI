@@ -7,7 +7,7 @@ class CustomUser(AbstractUser):
   followers = models.ManyToManyField('self', symmetrical=False)#symmetrical is false mean if A follows B it does not auomatically man B follows A
 
   def __str__(self):
-    return self.username
+    return self.username, self.followers
 
 
 
