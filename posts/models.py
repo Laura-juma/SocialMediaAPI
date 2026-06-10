@@ -4,6 +4,7 @@ class Post(models.Model):
   author = models.ForeignKey('accounts.CustomUser', on_delete=models.CASCADE, related_name = 'posts')
   title = models.CharField(max_length=150)
   content = models.TextField()
+  attachment = models.ImageField(upload_to='attachment_pics/' ,blank=True)
   created_at =  models.DateTimeField(auto_now_add=True)
   updated_at = models.DateTimeField(auto_now=True)
 
