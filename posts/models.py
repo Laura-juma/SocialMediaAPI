@@ -21,7 +21,12 @@ class Comment(models.Model):
   def __str__(self):
     return f"Comment by {self.author.username}"
 
+class Likes(models.Model):
+  post =models.ForeignKey('Post', on_delete = models.CASCADE, related_name = 'likes') 
+  user =models.ForeignKey('accounts.CustomUser', on_delete=models.CASCADE, related_name='user_likes') 
 
+  class Meta:
+    unique_together = ('post', 'user')
   
 
 

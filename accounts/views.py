@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.contrib.auth import authenticate
 from .models import CustomUser
 from rest_framework.views import APIView
@@ -71,7 +71,32 @@ class ProfileView(APIView):
       return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-      
+ 
+class FollowUserView(APIView):
+  permission_classes =[IsAuthenticated]
+  def post(self,request, user_id):
+    user = get_object_or_404(CustomUser, id=user_id)
+    if request.user == user:return Response(
+    {"error": "You cannot follow yourself"},
+    status=status.HTTP_400_BAD_REQUEST)
+    if user in request.user.following.all():
+      return Response({"error":"You already follow user"}, status =status.HTTP_400_BAD_REQUEST)
+    request.user.following.add(user)
+    return Response({"message": "User followed successfully"})
+
+class UnfollowUserView(APIView):
+  permission_classes = [IsAuthenticated]
+  def post(self,request,user_id):
+    user = get_object_or_404(CustomUser, id=user_id)
+    request.user.following.remove(user)
+    return Response({"message":"User unfollowed successfully!"})
+
+
+     
+
+ 
+
+
       
 
 
