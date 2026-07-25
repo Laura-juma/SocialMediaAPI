@@ -23,12 +23,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 import os
 
 SECRET_KEY = os.getenv("SECRET_KEY")
-
 # SECURITY WARNING: don't run with debug turned on in production!
-
 DEBUG = os.getenv("DEBUG", "False") == "True"
 
-ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "").split(",")
+ALLOWED_HOSTS = os.getenv(
+    "ALLOWED_HOSTS",
+    "127.0.0.1,localhost"
+).split(",")
+
 
 
 # Application definition
@@ -45,6 +47,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'posts',
     'notifications',
+    'drf_spectacular',
 ]
 
 MIDDLEWARE = [
@@ -136,9 +139,11 @@ REST_FRAMEWORK = {
    'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',
     ],
-  'DEFAULT_PAGINATION_CLASS' : 'rest_framework.pagination.PageNumberPagination',
-  'PAGE_SIZE': 10
-} 
+    'DEFAULT_PAGINATION_CLASS' : 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10,
+ 
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+}
 
 ROOT_URLCONF = 'social_media_api.urls'
 

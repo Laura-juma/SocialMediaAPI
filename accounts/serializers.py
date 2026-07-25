@@ -6,7 +6,9 @@ class RegisterSerializer(serializers.ModelSerializer):
     model = CustomUser
     fields = ['id', 'username', 'bio', 'profile_picture', 'password']
     extra_kwargs = {
-      'password' : {'write_only':True}
+      'password' : {'write_only':True},
+      'profile_picture': {'required': False}
+
     }
 
   def create(self, validated_data):

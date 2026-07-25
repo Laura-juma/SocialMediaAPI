@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media API</title>
+</head>
+
+<body>
+
+    <h1>Welcome to the Social Media API</h1>
+
+    <p>
+        A RESTful API built with Django REST Framework that allows users 
+        to create posts, comment, like posts, follow users, and receive notifications.
+    </p>
+
+
+    <h2>Available Pages</h2>
+
+    <ul>
+        <li><a href="/api/">API Root</a></li>
+        <li><a href="/admin/">Django Admin</a></li>
+    </ul>
+
+    <h2>Documentation</h2>
+
+    <ul>
+        <li>
+            <a href="/swagger/">Swagger API Documentation</a>
+        </li>
+
+        <li>
+            <a href="/api/">API Root</a>
+        </li>
+    </ul>
+
+
+    <h2>API Endpoints</h2>
+
+
+    <h3>Authentication & Users</h3>
+
+    <ul>
+        <li><a href="/api/accounts/register/">Register User</a></li>
+        <li><a href="/api/accounts/login/">Login</a></li>
+        <li><a href="/api/accounts/logout/">Logout</a></li>
+        <li><a href="/api/accounts/profile/">My Profile</a></li>
+        <li>/api/accounts/profile/&lt;user_id&gt;/ - View User Profile</li>
+        <li>/api/accounts/follow/&lt;user_id&gt;/ - Follow User</li>
+        <li>/api/accounts/unfollow/&lt;user_id&gt;/ - Unfollow User</li>
+    </ul>
+
+
+    <h3>Posts & Comments</h3>
+
+    <ul>
+        <li>/api/posts/ - Create and View Posts</li>
+        <li>/api/posts/&lt;id&gt;/ - Retrieve, Update or Delete Post</li>
+        <li>/api/comments/ - Create and View Comments</li>
+        <li>/api/comments/&lt;id&gt;/ - Manage Comments</li>
+    </ul>
+
+
+    <h3>Social Features</h3>
+
+    <ul>
+        <li>/api/feed/ - View User Feed</li>
+        <li>/api/posts/&lt;id&gt;/like - Like a Post</li>
+        <li>/api/posts/&lt;id&gt;/unlike - Unlike a Post</li>
+        <li>/api/notifications/ - View Notifications</li>
+    </ul>
+
+
+    <h2>Technologies Used</h2>
+
+    <ul>
+        <li>Python</li>
+        <li>Django</li>
+        <li>Django REST Framework</li>
+        <li>Token Authentication</li>
+        <li>Render</li>
+    </ul>
+
+
+</body>
+</html>

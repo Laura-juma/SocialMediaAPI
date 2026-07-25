@@ -9,9 +9,12 @@ from .serializers import RegisterSerializer, LoginSerializer, MyProfileSerialize
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from notifications.models import Notification
 
+def home(request):
+  return render(request, "accounts/home.html")
 
 class RegisterView(APIView):
   permission_classes=[AllowAny]
+  serializer_class = RegisterSerializer
   def post(self, request):
     serializer = RegisterSerializer(data=request.data)
 
@@ -33,6 +36,7 @@ class RegisterView(APIView):
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
   
 class LoginView(APIView):
+  serializer_class = LoginSerializer
   def post(self, request):
     serializer = LoginSerializer(data = request.data)
     if serializer.is_valid():
