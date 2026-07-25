@@ -2,9 +2,11 @@ from .models import Post, Comment
 from rest_framework import serializers
 
 class PostSerializer(serializers.ModelSerializer):
+  author_name = serializers.CharField(source='author.username', read_only=True)
+
   class Meta:
     model = Post
-    fields = ['title', 'content', 'created_at', 'updated_at']
+    fields = ['author_name', 'title', 'content', 'created_at', 'updated_at']
 
   def validate_content(self, value):
     if len(value.strip()) < 5:

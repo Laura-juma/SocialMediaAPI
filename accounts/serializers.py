@@ -22,14 +22,33 @@ class LoginSerializer(serializers.Serializer):
   username = serializers.CharField()
   password = serializers.CharField(write_only = True) #write_only means the field can be used when sending data in, but will NOT be included when sending data out
 
-class ProfileSerializer(serializers.ModelSerializer):
+class MyProfileSerializer(serializers.ModelSerializer):
+  followers_count = serializers.SerializerMethodField()
+  following_count = serializers.SerializerMethodField()
+  followers = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
+  following = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
+ 
   class Meta:
     model = CustomUser
-    fields = ['id', 'username', 'bio', 'profile_picture', 'followers']
-    
+    fields = ['id', 'username', 'bio', 'profile_picture', 'followers_count','following_count', 'followers', 'following']
 
-    
-
+  def get_followers_count(self,obj):
+    return obj.followers.count()
   
+  def get_following_count(self,obj):
+    return obj.following.count()
+  
+class ProfileSerializer(serializers.ModelSerializer):
+  followers_count = serializers.SerializerMethodField()
+  following_count = serializers.SerializerMethodField()
 
+  class Meta:
+    model = CustomUser
+    fields = ['username', 'bio', 'profile_picture', 'followers_count', 'following_count']
+
+  def get_followers_count(self,obj):
+    return obj.followers.count()
+  
+  def get_following_count(self,obj):
+    return obj.following.count()
 

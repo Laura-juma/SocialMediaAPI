@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-)yb^6!d5=)+%p(sb75b+6&08^(_hlkw8=pm%ypk!j7xkcem=@5'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'accounts',
     'rest_framework.authtoken',
     'posts',
+    'notifications',
 ]
 
 MIDDLEWARE = [
@@ -134,6 +135,8 @@ REST_FRAMEWORK = {
   'DEFAULT_PAGINATION_CLASS' : 'rest_framework.pagination.PageNumberPagination',
   'PAGE_SIZE': 10
 } 
+
+ROOT_URLCONF = 'social_media_api.urls'
 
 SECURE_BROWSER_XSS_FILTER = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
